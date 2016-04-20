@@ -47,7 +47,7 @@ def mobo():
 
 @app.route('/download')
 def download():
-    f = open("Input1.csv", "r", encoding='utf-8')
+    f = open("Input1.csv", "r")
     csv = """"REVIEW_DATE","AUTHOR","ISBN","DISCOUNTED_PRICE"
 "1985/01/21","Douglas Adams",0345391802,5.95
 "1990/01/12","Douglas Hofstadter",0465026567,9.95
@@ -56,7 +56,7 @@ def download():
 "2004/10/04","Randel Helms",0879755725,4.50"""
     # We need to modify the response, so the first thing we 
     # need to do is create a response out of the CSV string
-    f.encode('utf-8').strip()
+    # f.encode('utf-8').strip()
     response = make_response(f.read())
     # print(f.read())
     # response = make_response(csv)
