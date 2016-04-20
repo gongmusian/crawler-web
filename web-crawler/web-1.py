@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify, abort, render_template, make_response
 from crawler import mobo_crawler
+from requests import get
+
 
 def isfloat(s):
     try: 
@@ -45,6 +47,7 @@ def mobo():
 
 @app.route('/download')
 def download():
+    f = open("Input1.csv", "r", encoding='utf-8')
     csv = """"REVIEW_DATE","AUTHOR","ISBN","DISCOUNTED_PRICE"
 "1985/01/21","Douglas Adams",0345391802,5.95
 "1990/01/12","Douglas Hofstadter",0465026567,9.95
@@ -53,11 +56,23 @@ def download():
 "2004/10/04","Randel Helms",0879755725,4.50"""
     # We need to modify the response, so the first thing we 
     # need to do is create a response out of the CSV string
-    response = make_response(csv)
+    f.encode('utf-8').strip()
+    response = make_response(f.read())
+    # print(f.read())
+    # response = make_response(csv)
     # This is the key: Set the right header for the response
     # to be downloaded, instead of just printed on the browser
-    response.headers["Content-Disposition"] = "attachment; filename=books.csv"
+    response.headers["Content-Disposition"] = "attachment; filename=Input.csv"
+    # print("down")
     return response
+
+# @app.route('/downloadjpg')
+# def downloadjpg():
+#     with open('a.jpg', "wb") as file:
+#         response = get("https://preview.c9users.io/gongmusian/flask-hw/crawler-web/web-exercise/999.jpg")
+#         file.write(response.content)
+#     return file
+
 
 @app.route('/')
 def hello(name = None):
