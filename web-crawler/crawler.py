@@ -92,7 +92,8 @@ def mobo_crawler():
     GetASoup(urls)
     exportxlxs(ouput_file_name, soup_was, Item_Categorys, Category_1s, Category_2s, Category_3s)
     ouput_file_name = ouput_file_name +".xlsx"
-    return ouput_file_name
+    # return ouput_file_name
+    return
 # input("完成任務   請按下 Enter 關閉程式  2016-03-30 Robert Gong \'_>\'")
     # response = make_response(ouput_file_name+".xlsx")
     # response.headers["Content-Disposition"] = "attachment; filename="+ouput_file_name+".xlsx"
